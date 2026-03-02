@@ -69,18 +69,21 @@ const chartData = computed(() => {
     return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' })
   })
   
+  const incomeData: number[] = lastSixMonths.value.map(month => monthlyIncome[month] ?? 0)
+  const expenseData: number[] = lastSixMonths.value.map(month => monthlyExpense[month] ?? 0)
+  
   return {
     labels,
     datasets: [
       {
         label: 'Income',
-        data: lastSixMonths.value.map(month => monthlyIncome[month]),
+        data: incomeData,
         backgroundColor: '#4CAF50',
         borderRadius: 4
       },
       {
         label: 'Expenses',
-        data: lastSixMonths.value.map(month => monthlyExpense[month]),
+        data: expenseData,
         backgroundColor: '#f44336',
         borderRadius: 4
       }
